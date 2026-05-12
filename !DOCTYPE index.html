@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kittisak Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background: linear-gradient(180deg,#fdf7ff,#f5ecff,#ffffff);
+      color:#4b3f5c;
+      line-height:1.8;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    section{
+      padding:90px 0;
+    }
+
+    h1,h2,h3{
+      font-family:'Times New Roman', serif;
+      letter-spacing:1px;
+    }
+
+    /* NAVBAR */
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(200,180,255,0.3);
+    }
+
+    .nav-container{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 8%;
+    }
+
+    .logo{
+      font-size:1.3rem;
+      font-weight:700;
+      color:#9c6bff;
+    }
+
+    nav ul{
+      display:flex;
+      gap:28px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#5e4b75;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#b48dff;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      background:
+      radial-gradient(circle at top left,#f2ddff 0%,transparent 40%),
+      radial-gradient(circle at bottom right,#e8d7ff 0%,transparent 35%),
+      #fff;
+    }
+
+    .hero-content{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero-text h1{
+      font-size:4rem;
+      color:#8b5cf6;
+      margin-bottom:15px;
+    }
+
+    .hero-text h2{
+      font-size:1.3rem;
+      font-weight:400;
+      color:#7b6794;
+      margin-bottom:30px;
+    }
+
+    .hero-text p{
+      font-size:1rem;
+      max-width:550px;
+      color:#6b5b7a;
+    }
+
+    .hero-btn{
+      display:inline-block;
+      margin-top:35px;
+      padding:14px 34px;
+      background:#c6a5ff;
+      color:white;
+      text-decoration:none;
+      border-radius:40px;
+      transition:0.3s;
+      box-shadow:0 10px 20px rgba(170,120,255,0.25);
+    }
+
+    .hero-btn:hover{
+      background:#b48dff;
+      transform:translateY(-3px);
+    }
+
+    .hero-image{
+      display:flex;
+      justify-content:center;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:430px;
+      border-radius:35px;
+      object-fit:cover;
+      border:8px solid rgba(255,255,255,0.7);
+      box-shadow:0 20px 40px rgba(166,121,255,0.25);
+    }
+
+    /* SECTION TITLE */
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:2.7rem;
+      color:#8b5cf6;
+    }
+
+    .section-title p{
+      color:#8c7a9e;
+      margin-top:10px;
+    }
+
+    /* ABOUT */
+    .about-box{
+      background:rgba(255,255,255,0.8);
+      border:1px solid rgba(210,190,255,0.4);
+      padding:50px;
+      border-radius:30px;
+      box-shadow:0 15px 35px rgba(194,165,255,0.15);
+    }
+
+    .about-box p{
+      margin-bottom:20px;
+      text-align:justify;
+    }
+
+    /* PROJECTS */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .project-card{
+      background:white;
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 15px 30px rgba(170,120,255,0.15);
+      transition:0.3s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .project-img{
+      height:220px;
+      background:linear-gradient(135deg,#ead7ff,#d8c1ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7b6794;
+      font-size:1.2rem;
+      font-weight:600;
+    }
+
+    .project-content{
+      padding:30px;
+    }
+
+    .project-content h3{
+      color:#8b5cf6;
+      margin-bottom:12px;
+    }
+
+    /* SKILLS */
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+      gap:30px;
+    }
+
+    .skill{
+      background:white;
+      padding:25px;
+      border-radius:24px;
+      box-shadow:0 10px 25px rgba(190,160,255,0.15);
+    }
+
+    .skill-title{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:12px;
+      font-weight:600;
+      color:#6b5b7a;
+    }
+
+    .skill-bar{
+      width:100%;
+      height:14px;
+      background:#eee4ff;
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .skill-fill{
+      height:100%;
+      border-radius:20px;
+      background:linear-gradient(90deg,#c6a5ff,#9c6bff);
+    }
+
+    /* CONTACT */
+    .contact-box{
+      text-align:center;
+      background:linear-gradient(135deg,#f6edff,#ffffff);
+      padding:60px 30px;
+      border-radius:30px;
+      box-shadow:0 15px 35px rgba(180,140,255,0.15);
+    }
+
+    .contact-box p{
+      margin:15px 0;
+      font-size:1.1rem;
+      color:#6c5a7c;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#8d7ca0;
+      font-size:0.95rem;
+    }
+
+    @media(max-width:768px){
+
+      .hero{
+        padding-top:120px;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .skills-grid{
+        grid-template-columns:1fr;
+      }
+
+      nav ul{
+        gap:16px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Kittisak</div>
+
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <h1>Kristina</h1>
+
+        <h2>
+          English Teaching student passionate about Teaching Business
+        </h2>
+
+        <p>
+          A passionate English Language Teaching student dedicated to
+          creating meaningful learning experiences through creativity,
+          innovation, and modern educational approaches.
+        </p>
+
+        <a href="#about" class="hero-btn">Explore More</a>
+      </div>
+
+      <div class="hero-image">
+        
+        <img src="D:\งานเมีย\Kristy.index.html\S__6578180.jpg.jpg"
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>Get to know me better</p>
+      </div>
+
+      <div class="about-box">
+
+        <p>
+          Hello world I'm a English Language Teaching student who want
+          to make Teaching Business. I am a dedicated student in the
+          Faculty of Education, majoring in English Teaching at
+          Panyapiwat Institute of Management.
+        </p>
+
+        <p>
+          I am a firm believer in the Work-based Education model,
+          which emphasizes learning through practical experience.
+          With a B2 CEFR proficiency level and a deep commitment
+          to the teaching profession, I focus on integrating academic
+          excellence with effective classroom management to inspire
+          students through a sincere and professional approach.
+        </p>
+
+        <p>
+          My expertise lies in designing innovative instructional
+          materials through Game-based Learning (GBL), with a specific
+          focus on applying Morphology concepts, as demonstrated in my
+          project, "The Forge."
+        </p>
+
+        <p>
+          As a detail-oriented individual and a perfectionist, I
+          constantly explore ways to leverage technology and modern
+          methodologies to create a globally-minded and engaging
+          classroom environment. My goal is to elevate the English
+          learning experience, making it more dynamic and impactful
+          for the next generation.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>My creative educational works</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-img">
+            Placeholder Image
+          </div>
+
+          <div class="project-content">
+            <h3>The Forge</h3>
+
+            <p>
+              A Game-based Learning project focused on Morphology
+              concepts to make vocabulary learning more engaging,
+              interactive, and meaningful for students.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img">
+            Placeholder Image
+          </div>
+
+          <div class="project-content">
+            <h3>Interactive Classroom Kit</h3>
+
+            <p>
+              A collection of modern teaching materials designed to
+              improve classroom participation and encourage active
+              learning through collaborative activities.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img">
+            Placeholder Image
+          </div>
+
+          <div class="project-content">
+            <h3>Digital English Activities</h3>
+
+            <p>
+              Technology-enhanced English learning activities created
+              to support student engagement and practical language
+              development in modern classrooms.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Professional & educational abilities</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>English Communication</span>
+            <span>90%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:90%;"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>Classroom Management</span>
+            <span>85%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:85%;"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>Game-based Learning</span>
+            <span>92%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:92%;"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>Creativity</span>
+            <span>88%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:88%;"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>Instructional Design</span>
+            <span>87%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:87%;"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-title">
+            <span>Technology Integration</span>
+            <span>80%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" style="width:80%;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let's connect together</p>
+      </div>
+
+      <div class="contact-box">
+
+        <p>📧 JU空空如email</p>
+        <p>🌐 bababye .com</p>
+        <p>📱 Instagram : Latae_cho23</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Kittisak Choedchaiyaphum | Personal Portfolio
+  </footer>
+
+</body>
+</html>
